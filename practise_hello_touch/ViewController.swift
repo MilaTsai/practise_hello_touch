@@ -17,7 +17,7 @@ class ViewController: UIViewController {
         //print("What's up!!")
     }
     @IBAction func Startclick(_ sender: Any) {
-        mytitle.text = "Mila gesture is working!!"
+        mytitle.text = "Working!"
         
     }
     
