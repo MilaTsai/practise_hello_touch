@@ -34,63 +34,75 @@ class ViewController: UIViewController {
     
     @IBAction func makeAGuess(_ sender: UIButton) {
         
-          print(answer)//檢查
+        print(answer)//檢查
+        
+        let inputText = inputTextField.text! //拿出輸入的內容
+        print("inputText:\(inputText)") //檢查
+        
+        let inputNumber = Int(inputText)
+        //因為"inputText"型別為"string"，所以需要轉換為整數
+        
+        
         
         if isOver == false{
          //playing game
-
             
-        }else{
-            
-            
-        }
-        
-       let inputText = inputTextField.text! //拿出輸入的內容
-          print("inputText:\(inputText)") //檢查
-        
-       let inputNumber = Int(inputText)
-        //因為"inputText"型別為"string"，所以需要轉換為整數
-        
         if inputText == nil{
-            
-            //wrong input
-            //print("wrong input") //檢查
-            messageLabel.text = "No input! Guess a number between \(minNumber)~\(maxNumber)"
-            
-        }else{
-            //input ok
-            print("input number = \(inputNumber)") //檢查
-            
-            if inputNumber! > maxNumber{
-                //print("too large")//user input too large
-                messageLabel.text = "Too large ! Guess a number between \(minNumber)~\(maxNumber)"
                 
-                
-            }else if inputNumber! < minNumber{
-                //print("too small")//user input too small
-                messageLabel.text = "Too small ! Guess a number between \(minNumber)~\(maxNumber)"
-                
-            }else if inputNumber == answer{
-                //bingo! right answer
-                messageLabel.text = "you are right"
-                
+                //wrong input
+                //print("wrong input") //檢查
+                messageLabel.text = "No input! Guess a number between \(minNumber)~\(maxNumber)"
                 
             }else{
-                //check answer
-                //print("check answer")
-                //messageLabel.text = "Your are wrong, try again"
+                //input ok
+                print("input number = \(inputNumber)") //檢查
                 
-                if inputNumber! > answer{
-                    maxNumber = inputNumber!
+                if inputNumber! > maxNumber{
+                    //print("too large")//user input too large
+                    messageLabel.text = "Too large ! Guess a number between \(minNumber)~\(maxNumber)"
+                    
+                    
+                }else if inputNumber! < minNumber{
+                    //print("too small")//user input too small
+                    messageLabel.text = "Too small ! Guess a number between \(minNumber)~\(maxNumber)"
+                    
+                }else if inputNumber == answer{
+                    //bingo! right answer
+                    //messageLabel.text = "you are right"
+                    messageLabel.text = "You are right. press [Guess] to play again!"
+                    isOver = true
+                    
                 }else{
-                    //small than anwer
-                    minNumber = inputNumber!
+                    //check answer
+                    //print("check answer")
+                    //messageLabel.text = "Your are wrong, try again"
+                    
+                    if inputNumber! > answer{
+                        maxNumber = inputNumber!
+                    }else{
+                        //small than anwer
+                        minNumber = inputNumber!
+                    }
+                    
+                    messageLabel.text = "Try again! Guess a number between \(minNumber)~\(maxNumber)"
+                    
                 }
-                
-                messageLabel.text = "Try again! Guess a number between \(minNumber)~\(maxNumber)"
-                
+            
             }
+            
+            
+            
+        }else{
+            
+            //game is over
+            maxNumber = 100
+            minNumber = 1
+            messageLabel.text = "Guess a number between \(minNumber) ~ \(maxNumber)"
+            answer = GKRandomSource.sharedRandom().nextInt(upperBound:100)+1
+            isOver = false
+            
         }
+        
         
     }
  
