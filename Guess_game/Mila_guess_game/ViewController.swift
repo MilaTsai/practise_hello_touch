@@ -24,6 +24,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var background: UIImageView!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -33,6 +34,9 @@ class ViewController: UIViewController {
         
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle{
+        return.lightContent  //改變狀態
+    }
     
     @IBAction func makeAGuess(_ sender: UIButton) {
         
@@ -73,9 +77,11 @@ class ViewController: UIViewController {
                     //bingo! right answer
                     //messageLabel.text = "you are right"
                     messageLabel.text = "You are right. press [Guess] to play again!"
+                    background.image = UIImage(named:"Finish")
+                    
                     isOver = true
                     
-                    background.image = UIImage(named:"Finish")
+                    
                     
                 }else{
                     //check answer
@@ -104,8 +110,9 @@ class ViewController: UIViewController {
             minNumber = 1
             messageLabel.text = "Guess a number between \(minNumber) ~ \(maxNumber)"
             answer = GKRandomSource.sharedRandom().nextInt(upperBound:100)+1
-            isOver = false
             background.image = UIImage(named:"BG")
+            isOver = false
+            
         }
         
         
