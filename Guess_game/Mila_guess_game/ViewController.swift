@@ -22,6 +22,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var inputTextField: UITextField!
     
+    @IBOutlet weak var background: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -37,6 +39,7 @@ class ViewController: UIViewController {
         print(answer)//檢查
         
         let inputText = inputTextField.text! //拿出輸入的內容
+        inputTextField.text = "" //猜玩數字就清空
         print("inputText:\(inputText)") //檢查
         
         let inputNumber = Int(inputText)
@@ -72,6 +75,8 @@ class ViewController: UIViewController {
                     messageLabel.text = "You are right. press [Guess] to play again!"
                     isOver = true
                     
+                    background.image = UIImage(named:"Finish")
+                    
                 }else{
                     //check answer
                     //print("check answer")
@@ -100,7 +105,7 @@ class ViewController: UIViewController {
             messageLabel.text = "Guess a number between \(minNumber) ~ \(maxNumber)"
             answer = GKRandomSource.sharedRandom().nextInt(upperBound:100)+1
             isOver = false
-            
+            background.image = UIImage(named:"BG")
         }
         
         
